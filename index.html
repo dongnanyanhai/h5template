@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>H5源力量 —— 专注微信H5活动开发</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <!-- H5源力量 —— 专注微信H5活动开发，联系方式：978868928@qq.com-->
+    <meta name="author" content="阿海">
+    <meta name="email" content="978868928@qq.com">
+    <!-- <link rel="stylesheet" href="lib/Swiper/dist/css/swiper.min.css"> -->
+    <!-- <link rel="stylesheet" href="css/animate.min.css"> -->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <i id="music-btn" class="circle"></i>
+    <div id="loading" class="loading">
+        <div class="inner">
+            <div class="spinner"><i class="rect1"></i><i class="rect2"></i><i class="rect3"></i><i class="rect4"></i><i class="rect5"></i>
+            </div>
+            <p class="loading_rate" id="loading_rate">1%</p>
+            <p class="loading_progress">
+                <span class="bar" id="bar"></span>
+            </p>
+        </div>
+    </div>
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper autosize" id="test" data-w="100" data-h="ddd" >
+            <!-- 第1页 -->
+
+            <!-- 模板开始 -->
+            <!-- 
+            <div class="swiper-slide page" id="pageX" data-num="x">
+                <div class="p-bg">
+                    <img src="img/bg.png">
+                </div>
+                <div class="p-contents autosize" data-w="640" data-h="1008" data-top="middle" data-left="center">
+                    <img src="img/pX-cloud1.png" id="pX-cloud1" class="animated infinite pulse">
+                    <div id="pX-container" class="p-container">
+                        <img src="img/pX-img.png" id="pX-img" class="p-container-bg">
+                        <img src="img/dot.png" id="-dot" class="animated infinite">
+                        <button id="pX-click" class="p-click"></button>
+                        <button id="pX-click" class="p-click"></button>
+                    </div>
+                </div>
+            </div>
+             -->
+            <!-- 模板结束 -->
+        </div>
+    </div>
+    
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <!-- Swiper JS -->
+    <!-- <script src="lib/Swiper/dist/js/swiper.jquery.min.js"></script> -->
+    <!-- kute.min.js -->
+    <!-- <script src="lib/kute.js/dist/kute.min.js"></script> -->
+    <!-- <script src="lib/kute.js/dist/kute-jquery.min.js"></script> -->
+    <script src="js/lib.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // 定义资源目录，方便PHP后台配合！
+        var res_dir = "";
+        // 跟后台搭配后，记得切换
+        // var res_dir = "{SITE_THEME}fiat/";
+
+        // 所有图片
+        var res_imgs = "music.png";
+        // 基本配置
+        var configs = {
+            // 是否播放音乐
+            playMuisc:false,
+            // 是否现在帧率信息
+            showStats:true,
+            useSwiper:false,
+        }
+        
+        // 判断图片资源载入进度
+        loading();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+/*自适应控制*/
+/*如果屏幕宽度小于480像素，则匹配下面css代码*/
+@media screen and (max-device-width: 400px) {
+    body{
+        /*background-color: red;*/
+    }
+}
+/*如果屏幕宽度大于480像素，则匹配下面css代码*/
+@media screen and (min-width: 480px) {
+    body {
+        /*background-color: lightgreen;*/
+    }
+}
+
+/*第一页*/
