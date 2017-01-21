@@ -29,9 +29,13 @@ function loading() {
                 document.getElementById("loading").style.display= "none";
                 // 调用音乐播放函数
                 if(configs.playMuisc == true){
+                    document.getElementById("music-btn").style.display= "block";
                     playmuisc();
+                }else{
+                    document.getElementById("music-btn").style.display= "none";
                 }
 
+                // 性能检测面板
                 if(configs.showStats == true){
                     (function() {
                         var script = document.createElement('script');
@@ -43,9 +47,21 @@ function loading() {
                                 requestAnimationFrame(loop)
                             });
                         };
-                        script.src = '//rawgit.com/mrdoob/stats.js/master/build/stats.min.js';
+                        // script.src = '//rawgit.com/mrdoob/stats.js/master/build/stats.min.js';
+                        script.src = res_dir + "js/stats.min.js";
                         document.head.appendChild(script);
                     })()
+                }
+
+                // 手机调试面板
+                if(configs.showEruda == true){
+                    ;(function() {
+                        var script = document.createElement('script');
+                        // script.src = "//liriliri.github.io/eruda/eruda.min.js";
+                        script.src = res_dir + "js/eruda.min.js";
+                        document.body.appendChild(script);
+                        script.onload = function() { eruda.init() }
+                    })();
                 }
                 
             }, 500)
@@ -124,6 +140,11 @@ function goodluck(obj, luck) {
     };
     return null;
 };
+
+// 生成start到end之间的整数
+function rnd(start, end){
+    return Math.floor(Math.random() * (end - start) + start);
+}
 
 // JQuery 扩展
 // 自动调整宽高

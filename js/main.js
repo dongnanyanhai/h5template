@@ -22,13 +22,26 @@ $(document).ready(function() {
     // 触摸事件-end
     $("body").on('touchend', '#pageX', function(event) {
         event.preventDefault();
-        // 避免连续点击触发两次事件
+        
         var $this = $(this);
-        if($this.data('clk')== undefined){
+
+        // 避免连续点击触发两次事件
+        if($this.data('clk') == undefined || $this.data('clk') == "reclick"){
             $this.data('clk','clicked');
+            // $this.data('clk','reclick');
             // 在这里开始代码
 
         }
+        // 避免两次——end
+    });
+
+    // 页面载入完成时，来一波
+    $(window).on('load',function () {
+        $.auto_size(".autosize");
+    });
+
+    $(window).on('resize',function () {
+        $.auto_size(".autosize");
     });
 
     // Swiper 启用
@@ -64,9 +77,4 @@ $(document).ready(function() {
             }
         });
     }
-
-    $(window).on('resize',function () {
-        $.auto_size(".autosize");
-    });
-
 });
