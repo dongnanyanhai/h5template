@@ -460,6 +460,49 @@ template {
   display: none;
 }
 
+
+/*
+ * 阿海自用
+*/
+
+html,
+body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: transparent;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+
+/*设置图片被点击时，不出现边框*/
+
+a:hover,
+img:hover {
+    /*
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    -webkit-user-modify:read-write-plaintext-only;
+    outline: none;
+    */
+}
+/*解决 ios 下输入框出现偏移*/
+input{
+	padding: 0;
+	margin: 0;
+}
+
 /*
  * Swiper 3.2.0
  * 
@@ -610,49 +653,6 @@ Copyright (c) 2015 Daniel Eden
     -webkit-animation-name: fadeOut;
     animation-name: fadeOut;
 }
-
-
-/*
- * 阿海自用
-*/
-
-html,
-body {
-    position: relative;
-    height: 100%;
-}
-
-body {
-    background: transparent;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    color: #000;
-    margin: 0;
-    padding: 0;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 640px;
-    background-size: cover;
-    background-position: 50% 50%;
-}
-
-
-/*设置图片被点击时，不出现边框*/
-
-a:hover,
-img:hover {
-    /*
-    -webkit-tap-highlight-color:rgba(0,0,0,0);
-    -webkit-user-modify:read-write-plaintext-only;
-    outline: none;
-    */
-}
-/*解决 ios 下输入框出现偏移*/
-input{
-	padding: 0;
-	margin: 0;
-}
-
 
 /*载入页面*/
 
