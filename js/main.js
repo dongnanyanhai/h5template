@@ -18,6 +18,7 @@ function page1_init(){
 
 
 $(document).ready(function() {
+    
     // 处理ios中标签无法触发click事件的问题
     FastClick.attach(document.body);
 
@@ -26,11 +27,10 @@ $(document).ready(function() {
     // }
 
     // 触摸事件-end
-    $("body").on('touchend', '#pageX', function(event) {
+    $("body").on('click', '#pageX', function(event) {
         event.preventDefault();
         
         var $this = $(this);
-
         // 避免连续点击触发两次事件
         if($this.data('clk') == undefined || $this.data('clk') == "reclick"){
             $this.data('clk','clicked');

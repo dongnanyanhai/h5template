@@ -1,32 +1,44 @@
-// 载入动画
-function loading() {
-    document.getElementById("loading");
-    (function() {
-        for (var a = res_imgs.split(" "), b = 0; b < a.length; b++) a[b] = res_dir + "img/" + a[b];
-        var d =
-            function(a, c) {
-                var b = new Image;
-                b.onload = function() {
-                    b.onload = null;
-                    c(a)
-                };
-                b.src = a
-            },
-            c = document.getElementById("loading_rate"),
-            e = document.getElementById("bar"),
-            f = 0;
-        (function(a, b) {
-            for (var c = a.length, e = 0; a.length;) d(a.shift(), function(a) {
-                b(a, ++e, c)
-            })
-        })(a, function(a, b, d) {
-            f = b / d;
-            e.style.width = Math.floor(212 * f) + "px";
-            c.innerHTML = Math.floor(100 * f) + "%";
-            1 == f && setTimeout(function() {
-                // 在这个回调函数里面，千万不要使用jQ，避免一种情况：即所有图片载入成功，但实际上JQ还没载入完成
-                
-                document.getElementById("loading").style.display= "none";
+function loading(imgs,img_dir,done_callback,all_done_callback){
+
+    // 重写
+    var loading_rate = 0;
+
+    for (var all_img = imgs.split(" "), i = 0; i < all_img.length; i++) {
+        // 组成图片完整地址
+        all_img[i] = img_dir + all_img[i];
+    }
+
+    var img_load_fun = function(img_src,img_callback){
+        var temp_img = new Image;
+        temp_img.onload = function(){
+            temp_img.onload = null;
+            img_callback(img_src);
+        }
+        temp_img.src = img_src;
+    }
+
+    // 循环遍历所有图片
+    var temp_fun_o = function(all_img,temp_fun_t){
+        for (var imgs_len = all_img.length, imgs_done_num = 0; all_img.length;) {
+            img_load_fun(all_img.shift(),function(img_src){
+                temp_fun_t(img_src,++imgs_done_num,imgs_len);
+            });
+        }
+    }
+
+    // 检测图片载入进度
+    var temp_fun_t = function(img_src,imgs_done_num,imgs_len){
+
+        loading_rate = imgs_done_num / imgs_len;
+
+        done_callback(loading_rate);
+
+        if(1 == loading_rate){
+
+            setTimeout(function(){
+
+                // 所有图片载入完成
+
                 // 调用音乐播放函数
                 if(configs.playMuisc == true){
                     document.getElementById("music-btn").style.display= "block";
@@ -63,11 +75,18 @@ function loading() {
                         script.onload = function() { eruda.init() }
                     })();
                 }
-                
-            }, 500)
-        })
-    })()
-};
+
+                document.getElementById("loading").style.display= "none";
+
+                // 执行回调函数
+                all_done_callback();
+            },500);
+        }
+    }
+
+    // 开始执行——我痛恨这样的Javascript
+    temp_fun_o(all_img,temp_fun_t);
+}
 
 // 播放音乐
 function playmuisc(){
@@ -110,7 +129,7 @@ function is_weixn(){
 
 // 判断是否为手机号码
 function is_phone(phone){
-    var bValidate = RegExp(/^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57])[0-9]{8}$/).test(phone);
+    var bValidate = RegExp(/^1(3|4|5|7|8)[0-9]\d{8}$/).test(phone);
     if(bValidate){
         return true;
     }else{

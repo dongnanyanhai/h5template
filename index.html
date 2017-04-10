@@ -67,21 +67,33 @@
         // 跟后台搭配后，记得切换
         // var res_dir = "{SITE_THEME}fiat/";
 
-        // 所有图片
-        var res_imgs = "music.png";
         // 基本配置
         var configs = {
-            // 是否播放音乐
+            // 是否播放 音乐
             playMuisc:false,
             // 是否显示 性能检测面板
             showStats:false,
             // 是否显示 手机调试面板
             showEruda:true,
+            // 是否使用 Swiper
             useSwiper:false,
+        }
+
+        // 所有图片
+        var imgs = 'music_stop.png music.png';
+        // 图片所在目录
+        var img_dir = 'img/';
+        // 每个图片载入完成回调函数
+        var done_callback = function(rate){
+            console.log(rate);
+        }
+        // 全部图片载入完成回调函数
+        var all_done_callback = function(){
+            console.log('Fuck Javascript!');
         }
         
         // 判断图片资源载入进度
-        loading();
+        loading(imgs,img_dir,done_callback,all_done_callback);
     </script>
     <script type="text/javascript">
     // 统计代码
