@@ -69,10 +69,12 @@ function loading(imgs,img_dir,done_callback,all_done_callback){
                 if(configs.showEruda == true){
                     ;(function() {
                         var script = document.createElement('script');
+                        document.body.appendChild(script);
+                        script.onload = function(){
+                            eruda.init()
+                        }
                         // script.src = "//liriliri.github.io/eruda/eruda.min.js";
                         script.src = res_dir + "js/eruda.min.js";
-                        document.body.appendChild(script);
-                        script.onload = function() { eruda.init() }
                     })();
                 }
 
