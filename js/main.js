@@ -26,6 +26,44 @@ $(document).ready(function() {
     //     $("body").css("cursor", "pointer");
     // }
 
+
+    // 事件模版
+    $("body").on('click', '#pageX', function(event) {
+        event.preventDefault();
+
+        var $this = $(this);
+
+        if($this.data('clk') == undefined || $this.data('clk') == "reclick"){
+            $this.data('clk','clicked');
+            // $this.data('clk','reclick');
+            // 提交数据到后台
+            $.ajax({
+                type: 'POST',
+                url: ajax_url + 'main/set_inviter',
+                data: $("#takepart-top-form").serialize(),
+                success: function(json){
+                    //判断返回值不是 json 格式
+                    if (!json.match("^\{(.+:.+,*){1,}\}$")){
+                        //普通字符串处理
+                        $.toast('网络问题，暂时无法连接服务器','text');
+                    }else{
+                        //通过这种方法可将字符串转换为对象
+                        var remsg = jQuery.parseJSON(json);
+                        if(remsg.status == 1){
+                            // 成功
+                            $.toast(remsg.msg,'text');
+                        }else{
+                            // 失败
+                            $.toast(remsg.msg,'text');
+                        }
+                    }
+                    // 收到服务器反馈后，允许再次点击
+                    $this.data('clk','reclick');
+                }
+            });
+        }
+    });
+
     // 触摸事件-end
     $("body").on('click', '#pageX', function(event) {
         event.preventDefault();
@@ -35,10 +73,7 @@ $(document).ready(function() {
         if($this.data('clk') == undefined || $this.data('clk') == "reclick"){
             $this.data('clk','clicked');
             // $this.data('clk','reclick');
-            // 在这里开始代码
-
         }
-        // 避免两次——end
     });
 
     // 页面载入完成时，来一波

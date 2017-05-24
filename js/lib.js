@@ -1,3 +1,20 @@
+// 通过给html标签加“data-use-rem”，可以调用下面函数
+(function(win) {
+    var doc = win.document,
+        html = doc.documentElement,
+        option = html.getAttribute('data-use-rem');
+    if (option === null) return;
+    var baseWidth = parseInt(option).toString() == 'NaN' ? 750 : parseInt(option),
+        resizeEvt = 'orientationchange' in win ? 'orientationchange' : 'resize',
+        recalc = function() {
+            var clientWidth = html.clientWidth || 375;
+            html.style.fontSize = 100 * clientWidth / baseWidth + 'px';
+        };
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+})(window);
+
 function loading(imgs,img_dir,done_callback,all_done_callback){
 
     // 重写
