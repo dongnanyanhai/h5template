@@ -137,7 +137,7 @@ function playmuisc(){
 }
 
 // 判断是否在微信内打开
-function is_weixn(){
+function is_weixin(){
     var ua = navigator.userAgent.toLowerCase();
     if(ua.match(/MicroMessenger/i)=="micromessenger") {
         return true;
